@@ -45,6 +45,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Scheme(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         app_label = "rapihogar"
         verbose_name = _("Esquema de un pedido")
