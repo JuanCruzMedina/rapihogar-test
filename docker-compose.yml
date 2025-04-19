@@ -4,10 +4,25 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 80:80
+      - "80:80"
     depends_on:
       - web
     restart: "on-failure"
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -16,5 +31,9 @@ services:
     ports:
       - "8000:8000"
     expose:
-      - 8000
+      - "8000"
+    depends_on:
+      - db
 
+volumes:
+  postgres_data:
