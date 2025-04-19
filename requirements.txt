@@ -5,3 +5,4 @@ django-admin
 django-extensions
 ipython
 psycopg2-binary
+python-dotenv
