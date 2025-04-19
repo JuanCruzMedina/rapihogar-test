@@ -1,0 +1,42 @@
+[
+  {
+    "model": "rapihogar.technician",
+    "pk": 1,
+    "fields": {
+      "last_name": "Juan Cruz",
+      "first_name": "Medina"
+    }
+  },
+  {
+    "model": "rapihogar.technician",
+    "pk": 2,
+    "fields": {
+      "last_name": "Julio",
+      "first_name": "César"
+    }
+  },
+  {
+    "model": "rapihogar.technician",
+    "pk": 3,
+    "fields": {
+      "last_name": "Adriá",
+      "first_name": "Vegas"
+    }
+  },
+  {
+    "model": "rapihogar.technician",
+    "pk": 4,
+    "fields": {
+      "last_name": "William",
+      "first_name": "Molina"
+    }
+  },
+  {
+    "model": "rapihogar.technician",
+    "pk": 5,
+    "fields": {
+      "last_name": "Francisco",
+      "first_name": "Serafini"
+    }
+  }
+]

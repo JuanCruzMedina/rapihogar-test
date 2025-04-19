@@ -36,6 +36,7 @@ docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/user.json --
 docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/company.json --app rapihogar.company
 docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/scheme.json --app rapihogar.scheme
 docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/pedido.json --app rapihogar.pedido
+docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/technician.json --app rapihogar.technician
 ```
 
 ```bash

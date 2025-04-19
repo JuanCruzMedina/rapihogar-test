@@ -1,10 +1,10 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 
 
-class User(AbstractBaseUser, PermissionsMixin):    
-    email = models.EmailField(_('email address'), unique=True)
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_("email address"), unique=True)
     username = models.CharField(max_length=765, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -13,7 +13,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         null=True,
         db_index=True,
-        verbose_name="Telefono WhatsApp (+54)"
+        verbose_name="Telefono WhatsApp (+54)",
     )
     last_name = models.CharField(
         max_length=100,
@@ -23,30 +23,32 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=100,
         null=True,
     )
-    
+
     @property
     def full_name(self):
-        return u"{} {}".format(self.first_name if self.first_name else '',
-                               self.last_name if self.last_name else '')
+        return "{} {}".format(
+            self.first_name if self.first_name else "",
+            self.last_name if self.last_name else "",
+        )
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name", "username"]
 
     objects = UserManager()
 
     class Meta:
-        app_label = 'rapihogar'
-        verbose_name = _('RapiHogar User')
-        verbose_name_plural = _('RapiHogar Users')  
+        app_label = "rapihogar"
+        verbose_name = _("RapiHogar User")
+        verbose_name_plural = _("RapiHogar Users")
 
 
 class Scheme(models.Model):
     name = models.CharField(max_length=50)
 
     class Meta:
-        app_label = 'rapihogar'
-        verbose_name = _('Esquema de un pedido')
-        verbose_name_plural = _('Esquemas de pedidos')
+        app_label = "rapihogar"
+        verbose_name = _("Esquema de un pedido")
+        verbose_name_plural = _("Esquemas de pedidos")
 
 
 class Company(models.Model):
@@ -56,9 +58,9 @@ class Company(models.Model):
     website = models.CharField(max_length=100)
 
     class Meta:
-        app_label = 'rapihogar'
-        verbose_name = _('Empresa')
-        verbose_name_plural = _('Empresas')
+        app_label = "rapihogar"
+        verbose_name = _("Empresa")
+        verbose_name_plural = _("Empresas")
 
 
 class Pedido(models.Model):
@@ -66,27 +68,42 @@ class Pedido(models.Model):
     PEDIDO = 1
 
     TIPO_PEDIDO = (
-        (SOLICITUD, 'Solicitud'),
-        (PEDIDO, 'Pedido'),
+        (SOLICITUD, "Solicitud"),
+        (PEDIDO, "Pedido"),
     )
     type_request = models.IntegerField(
-        choices=TIPO_PEDIDO,
-        db_index=True,
-        default=PEDIDO
+        choices=TIPO_PEDIDO, db_index=True, default=PEDIDO
     )
-    client = models.ForeignKey(
-        User,
-        verbose_name='cliente',
-        on_delete=models.CASCADE
-    )
-    scheme = models.ForeignKey(
-        Scheme,
-        null=True,
-        on_delete=models.CASCADE
-    )
+    client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
+    scheme = models.ForeignKey(Scheme, null=True, on_delete=models.CASCADE)
     hours_worked = models.IntegerField(default=0)
 
     class Meta:
-        app_label = 'rapihogar'
-        verbose_name_plural = 'pedidos'
-        ordering = ('-id', )
+        app_label = "rapihogar"
+        verbose_name_plural = "pedidos"
+        ordering = ("-id",)
+
+
+class Technician(models.Model):
+    last_name = models.CharField(
+        max_length=100,
+        null=True,
+    )
+    first_name = models.CharField(
+        max_length=100,
+        null=True,
+    )
+
+    @property
+    def full_name(self):
+        return "{} {}".format(
+            self.first_name if self.first_name else "",
+            self.last_name if self.last_name else "",
+        )
+
+    REQUIRED_FIELDS = ["first_name", "last_name"]
+
+    class Meta:
+        app_label = "rapihogar"
+        verbose_name = _("Tecnicos")
+        verbose_name_plural = _("Tecnicos")
