@@ -3,7 +3,7 @@ from rest_framework import routers
 
 from api.technician.views import TechnicianListView
 
-from .views import CompanyViewSet
+from .company.views import CompanyViewSet
 
 router = routers.DefaultRouter()
 router.register(r"company", CompanyViewSet, basename="company")

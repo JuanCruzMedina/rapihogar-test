@@ -1,10 +1,10 @@
 import json
-from rapihogar.models import User
-from django.urls import reverse
 
+from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
-from rapihogar.models import Company
+
+from rapihogar.models import Company, User
 
 
 class CompanyListCreateAPIViewTestCase(APITestCase):
@@ -19,17 +19,18 @@ class CompanyListCreateAPIViewTestCase(APITestCase):
         self.api_authentication()
 
     def api_authentication(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
 
     def test_create_company(self):
-        response = self.client.post(self.url,
-                                    {
-                                        "name": "company delete!",
-                                        "phone": "123456789",
-                                        "email": "test@rapihigar.com",
-                                        "website": "http://www.rapitest.com"
-                                    }
-                                    )
+        response = self.client.post(
+            self.url,
+            {
+                "name": "company delete!",
+                "phone": "123456789",
+                "email": "test@rapihigar.com",
+                "website": "http://www.rapitest.com",
+            },
+        )
         self.assertEqual(201, response.status_code)
 
     def test_list_company(self):
