@@ -79,7 +79,11 @@ class Pedido(models.Model):
     )
     client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
     technician = models.ForeignKey(
-        "Technician", verbose_name="tecnico", on_delete=models.CASCADE, null=True
+        "Technician",
+        verbose_name="tecnico",
+        on_delete=models.CASCADE,
+        null=False,
+        default=1,
     )
     scheme = models.ForeignKey(Scheme, null=True, on_delete=models.CASCADE)
     hours_worked = models.IntegerField(default=0)
