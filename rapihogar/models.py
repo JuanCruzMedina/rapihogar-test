@@ -108,6 +108,9 @@ class Technician(models.Model):
             self.last_name if self.last_name else "",
         )
 
+    def __str__(self):
+        return self.full_name
+
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
     class Meta:

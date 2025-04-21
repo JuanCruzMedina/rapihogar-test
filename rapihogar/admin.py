@@ -28,9 +28,16 @@ class CompanyAdmin(admin.ModelAdmin):
 
 @admin.register(Pedido)
 class PedidoAdmin(admin.ModelAdmin):
-    list_display = ("id", "type_request", "client", "scheme", "hours_worked")
-    list_filter = ("type_request",)
-    search_fields = ("client__email", "scheme__name")
+    list_display = (
+        "id",
+        "type_request",
+        "client",
+        "technician",
+        "scheme",
+        "hours_worked",
+    )
+    list_filter = ("type_request", "technician")
+    search_fields = ("client__email", "scheme__name", "technician__first_name")
     ordering = ("-id",)
 
 
