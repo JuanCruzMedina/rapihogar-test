@@ -36,3 +36,4 @@ Thumbs.db
 
 /venv/
 .env
+.vscode/settings.json
