@@ -1,12 +1,14 @@
-from rapihogar.models import Company
+from django.urls import include, path
 from rest_framework import routers
-from django.urls import path, include
+
+from api.technician.views import TechnicianListView
+
 from .views import CompanyViewSet
 
 router = routers.DefaultRouter()
-router.register(r'company', CompanyViewSet, basename='company')
-
+router.register(r"company", CompanyViewSet, basename="company")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
+    path("technicians/", TechnicianListView.as_view(), name="technician-list"),
 ]
