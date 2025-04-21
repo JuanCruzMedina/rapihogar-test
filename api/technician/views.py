@@ -10,7 +10,7 @@ from api.technician.services.payment_service import PaymentService
 from rapihogar.models import Technician
 
 
-class TechnicianListView(ListAPIView):
+class TechnicianPaymentListView(ListAPIView):
     """
     Endpoint para listar técnicos y calcular el pago según las horas trabajadas.
     Permite filtrar por parte del nombre.

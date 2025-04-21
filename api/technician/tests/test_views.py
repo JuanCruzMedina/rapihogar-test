@@ -48,7 +48,7 @@ class TechnicianListViewTest(TestCase):
         for case in test_cases:
             with self.subTest(name_filter=case["name_filter"]):
                 response: JsonResponse = self.client.get(
-                    reverse("technician-list"), {"name": case["name_filter"]}
+                    reverse("technician-payments-list"), {"name": case["name_filter"]}
                 )
                 self.assertEqual(response.status_code, status.HTTP_200_OK)
                 response_data: List[Dict[str, Any]] = response.json()
@@ -62,7 +62,7 @@ class TechnicianListViewTest(TestCase):
         """
         Verifica que sin filtro se devuelvan todos los técnicos.
         """
-        response: JsonResponse = self.client.get(reverse("technician-list"))
+        response: JsonResponse = self.client.get(reverse("technician-payments-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data: List[Dict[str, Any]] = response.json()
         self.assertEqual(len(response_data), 3)
@@ -75,7 +75,7 @@ class TechnicianListViewTest(TestCase):
         Verifica que el endpoint funcione correctamente cuando no hay técnicos.
         """
         Technician.objects.all().delete()
-        response: JsonResponse = self.client.get(reverse("technician-list"))
+        response: JsonResponse = self.client.get(reverse("technician-payments-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data: List[Dict[str, Any]] = response.json()
         self.assertEqual(len(response_data), 0)
@@ -84,7 +84,7 @@ class TechnicianListViewTest(TestCase):
         """
         Verifica que la estructura de la respuesta sea consistente.
         """
-        response: JsonResponse = self.client.get(reverse("technician-list"))
+        response: JsonResponse = self.client.get(reverse("technician-payments-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data: List[Dict[str, Any]] = response.json()
 
@@ -116,7 +116,7 @@ class TechnicianListViewTest(TestCase):
             type_request=Pedido.PEDIDO, client=user, scheme=scheme, hours_worked=3
         )
 
-        response: JsonResponse = self.client.get(reverse("technician-list"))
+        response: JsonResponse = self.client.get(reverse("technician-payments-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data: List[Dict[str, Any]] = response.json()
 
@@ -137,7 +137,7 @@ class TechnicianListViewTest(TestCase):
         """
         Verifica que los campos calculados sean correctos para técnicos sin pedidos.
         """
-        response: JsonResponse = self.client.get(reverse("technician-list"))
+        response: JsonResponse = self.client.get(reverse("technician-payments-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data: List[Dict[str, Any]] = response.json()
 
