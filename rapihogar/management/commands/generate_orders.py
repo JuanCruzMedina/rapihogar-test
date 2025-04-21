@@ -3,8 +3,8 @@ from typing import Any
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
+from api.order.seed import PedidoService
 from rapihogar.models import Scheme, Technician, User
-from rapihogar.services.seed_service import PedidoService
 
 
 class Command(BaseCommand):
@@ -63,7 +63,7 @@ class Command(BaseCommand):
         if not schemes:
             raise CommandError("No hay esquemas disponibles en la base de datos.")
 
-        PedidoService.create_random_pedidos(technicians, clients, schemes, n)
+        PedidoService.create_random_orders(technicians, clients, schemes, n)
 
         self.stdout.write(
             self.style.SUCCESS(f"Se generaron {n} pedidos correctamente.")

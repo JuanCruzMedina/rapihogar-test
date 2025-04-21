@@ -7,7 +7,7 @@ from rapihogar.models import Pedido, Scheme, Technician, User
 class PedidoService:
 
     @staticmethod
-    def create_random_pedidos(
+    def create_random_orders(
         technicians: List[Technician],
         clients: List[User],
         schemes: List[Scheme],
