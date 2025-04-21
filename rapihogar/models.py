@@ -78,12 +78,16 @@ class Pedido(models.Model):
         choices=TIPO_PEDIDO, db_index=True, default=PEDIDO
     )
     client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
+    technician = models.ForeignKey(
+        "Technician", verbose_name="tecnico", on_delete=models.CASCADE, null=True
+    )
     scheme = models.ForeignKey(Scheme, null=True, on_delete=models.CASCADE)
     hours_worked = models.IntegerField(default=0)
 
     class Meta:
         app_label = "rapihogar"
-        verbose_name_plural = "pedidos"
+        verbose_name = "Pedido"
+        verbose_name_plural = "Pedidos"
         ordering = ("-id",)
 
 
