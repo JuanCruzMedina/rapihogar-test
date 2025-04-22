@@ -4,7 +4,7 @@ from typing import List
 from rapihogar.models import Order, Scheme, Technician, User
 
 
-class PedidoService:
+class OrderSeeder:
 
     @staticmethod
     def create_random_orders(

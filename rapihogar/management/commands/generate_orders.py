@@ -3,7 +3,7 @@ from typing import Any
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from api.order.seed import PedidoService
+from api.order.seed import OrderSeeder
 from rapihogar.models import Scheme, Technician, User
 
 
@@ -38,7 +38,7 @@ class Command(BaseCommand):
         delete: bool = kwargs["delete"]
 
         if delete:
-            PedidoService.delete_all_orders()
+            OrderSeeder.delete_all_orders()
             self.stdout.write(
                 self.style.SUCCESS(
                     "Se eliminaron todos los pedidos previos correctamente."
@@ -63,7 +63,7 @@ class Command(BaseCommand):
         if not schemes:
             raise CommandError("No hay esquemas disponibles en la base de datos.")
 
-        PedidoService.create_random_orders(technicians, clients, schemes, n)
+        OrderSeeder.create_random_orders(technicians, clients, schemes, n)
 
         self.stdout.write(
             self.style.SUCCESS(f"Se generaron {n} pedidos correctamente.")
