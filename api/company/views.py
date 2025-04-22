@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from api.company.serializers import CompanySerializer
+from api.company.serializers.company_serializer import CompanySerializer
 from rapihogar.models import Company
 
 
