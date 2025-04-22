@@ -36,7 +36,7 @@ class OrderAdmin(admin.ModelAdmin):
         "scheme",
         "hours_worked",
     )
-    list_filter = ("type_request", "technician")
+    list_filter = ("type_request", "technician", "scheme")
     search_fields = ("client__email", "scheme__name", "technician__first_name")
     ordering = ("-id",)
 
