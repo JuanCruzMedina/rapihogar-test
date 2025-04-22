@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 
-from rapihogar.models import Pedido, Scheme, Technician, User
+from rapihogar.models import Order, Scheme, Technician, User
 
 FULL_NAME_JUAN = "Juan Perez"
 FULL_NAME_MARIA = "Maria Lopez"
@@ -113,10 +113,10 @@ class TechnicianPaymentListViewTest(TestCase):
             name="Esquema de prueba",
         )
         technician.pedido_set.create(
-            type_request=Pedido.PEDIDO, client=user, scheme=scheme, hours_worked=5
+            type_request=Order.ORDER, client=user, scheme=scheme, hours_worked=5
         )
         technician.pedido_set.create(
-            type_request=Pedido.PEDIDO, client=user, scheme=scheme, hours_worked=3
+            type_request=Order.ORDER, client=user, scheme=scheme, hours_worked=3
         )
 
         response: JsonResponse = self.client.get(reverse("technician-payments-list"))

@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from rapihogar.models import Pedido, Scheme, Technician, User
+from rapihogar.models import Order, Scheme, Technician, User
 
 
 class OrderUpdateViewTest(APITestCase):
@@ -25,15 +25,15 @@ class OrderUpdateViewTest(APITestCase):
             first_name="Maria", last_name="Lopez"
         )
 
-        cls.valid_order: Pedido = Pedido.objects.create(
+        cls.valid_order: Order = Order.objects.create(
             technician=cls.technician1,
             client=cls.client_user,
             scheme=cls.scheme,
             hours_worked=5,
-            type_request=Pedido.PEDIDO,
+            type_request=Order.ORDER,
         )
 
-        cls.non_editable_order: Pedido = Pedido.objects.create(
+        cls.non_editable_order: Order = Order.objects.create(
             technician=cls.technician2,
             client=cls.client_user,
             scheme=cls.scheme,
@@ -55,7 +55,7 @@ class OrderUpdateViewTest(APITestCase):
         response = self.client.patch(url, new_data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        updated_order: Pedido = Pedido.objects.get(id=self.valid_order.id)
+        updated_order: Order = Order.objects.get(id=self.valid_order.id)
         self.assertEqual(updated_order.hours_worked, 8)
         self.assertEqual(updated_order.technician.id, self.technician2.id)
 

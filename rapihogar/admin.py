@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import Company, Pedido, Scheme, Technician, User
+from .models import Company, Order, Scheme, Technician, User
 
 
 @admin.register(User)
@@ -26,7 +26,7 @@ class CompanyAdmin(admin.ModelAdmin):
     ordering = ("name",)
 
 
-@admin.register(Pedido)
+@admin.register(Order)
 class PedidoAdmin(admin.ModelAdmin):
     list_display = (
         "id",

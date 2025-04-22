@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 from rest_framework import serializers
 
-from rapihogar.models import Pedido
+from rapihogar.models import Order
 
 
 class OrderUpdateSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class OrderUpdateSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model = Pedido
+        model = Order
         fields = ["client", "scheme", "technician", "hours_worked"]
 
     def validate_hours_worked(self, value: int) -> int:
@@ -48,6 +48,6 @@ class OrderUpdateSerializer(serializers.ModelSerializer):
         Returns:
             Dict[str, Any]: Los datos validados del pedido.
         """
-        if self.instance.type_request != Pedido.PEDIDO:
+        if self.instance.type_request != Order.ORDER:
             raise serializers.ValidationError("Solo se pueden modificar pedidos")
         return data

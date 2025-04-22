@@ -66,16 +66,16 @@ class Company(models.Model):
         verbose_name_plural = _("Empresas")
 
 
-class Pedido(models.Model):
-    SOLICITUD = 0
-    PEDIDO = 1
+class Order(models.Model):
+    REQUEST = 0
+    ORDER = 1
 
     TIPO_PEDIDO = (
-        (SOLICITUD, "Solicitud"),
-        (PEDIDO, "Pedido"),
+        (REQUEST, "Solicitud"),
+        (ORDER, "Pedido"),
     )
     type_request = models.IntegerField(
-        choices=TIPO_PEDIDO, db_index=True, default=PEDIDO
+        choices=TIPO_PEDIDO, db_index=True, default=ORDER
     )
     client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
     technician = models.ForeignKey(

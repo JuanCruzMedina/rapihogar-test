@@ -4,7 +4,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from rapihogar.models import Pedido, Scheme, Technician, User
+from rapihogar.models import Order, Scheme, Technician, User
 
 
 class TechnicianReportViewTest(APITestCase):
@@ -32,26 +32,26 @@ class TechnicianReportViewTest(APITestCase):
         )
         cls.scheme = Scheme.objects.create(name="Esquema de prueba")
 
-        Pedido.objects.create(
+        Order.objects.create(
             technician=cls.technician1,
             client=cls.client,
             scheme=cls.scheme,
             hours_worked=10,
-            type_request=Pedido.PEDIDO,
+            type_request=Order.ORDER,
         )
-        Pedido.objects.create(
+        Order.objects.create(
             technician=cls.technician1,
             client=cls.client,
             scheme=cls.scheme,
             hours_worked=5,
-            type_request=Pedido.PEDIDO,
+            type_request=Order.ORDER,
         )
-        Pedido.objects.create(
+        Order.objects.create(
             technician=cls.technician3,
             client=cls.client,
             scheme=cls.scheme,
             hours_worked=8,
-            type_request=Pedido.PEDIDO,
+            type_request=Order.ORDER,
         )
 
     def test_report_structure(self) -> None:

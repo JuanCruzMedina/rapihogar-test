@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.order.serializers.update_serializer import OrderUpdateSerializer
-from rapihogar.models import Pedido
+from rapihogar.models import Order
 
 
 class OrderUpdateView(APIView):
@@ -19,7 +19,7 @@ class OrderUpdateView(APIView):
         """
         Actualiza un pedido existente.
         """
-        order: Pedido = get_object_or_404(Pedido, pk=pk)
+        order: Order = get_object_or_404(Order, pk=pk)
         serializer: OrderUpdateSerializer = OrderUpdateSerializer(
             order, data=request.data, partial=True
         )

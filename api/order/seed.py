@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from rapihogar.models import Pedido, Scheme, Technician, User
+from rapihogar.models import Order, Scheme, Technician, User
 
 
 class PedidoService:
@@ -13,7 +13,7 @@ class PedidoService:
         schemes: List[Scheme],
         n: int,
         max_hours: int = 10,
-    ) -> List[Pedido]:
+    ) -> List[Order]:
         """
         Crea múltiples pedidos aleatorios seleccionando técnicos, clientes y esquemas al azar.
         Inserta los pedidos en la base de datos de forma masiva.
@@ -35,20 +35,20 @@ class PedidoService:
             hours_worked = random.randint(MIN_HOURS, max_hours)
 
             orders.append(
-                Pedido(
+                Order(
                     technician=technician,
                     client=client,
                     scheme=scheme,
                     hours_worked=hours_worked,
-                    type_request=Pedido.PEDIDO,
+                    type_request=Order.ORDER,
                 )
             )
 
-        return Pedido.objects.bulk_create(orders)
+        return Order.objects.bulk_create(orders)
 
     @staticmethod
     def delete_all_orders() -> None:
         """
         Elimina todos los pedidos de la base de datos.
         """
-        Pedido.objects.all().delete()
+        Order.objects.all().delete()
