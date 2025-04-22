@@ -1,11 +1,10 @@
 from django.urls import include, path
 from rest_framework import routers
 
+from api.company.views.company_view import CompanyViewSet
 from api.order.views.update_view import OrderUpdateView
 from api.technician.views.payment_view import TechnicianPaymentView
 from api.technician.views.report_view import TechnicianReportView
-
-from .company.views import CompanyViewSet
 
 router = routers.DefaultRouter()
 router.register(r"company", CompanyViewSet, basename="company")
