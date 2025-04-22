@@ -28,12 +28,16 @@ class TechnicianPaymentView(APIView):
             total_orders=Count("order"),
         )
 
+        default_hours: int = 0
         data: List[Dict[str, Any]] = [
             {
                 "full_name": technician.full_name,
-                "total_hours": technician.total_hours or 0,
+                "total_hours": technician.total_hours or default_hours,
                 "total_payment": round(
-                    PaymentService.calculate_payment(technician.total_hours or 0), 2
+                    PaymentService.calculate_payment(
+                        technician.total_hours or default_hours
+                    ),
+                    2,
                 ),
                 "total_orders": technician.total_orders,
             }
