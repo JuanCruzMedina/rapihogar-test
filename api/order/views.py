@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.order.serializers import OrderUpdateSerializer
+from api.order.serializers.update_serializer import OrderUpdateSerializer
 from rapihogar.models import Pedido
 
 
