@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from api.order.views import OrderUpdateView
-from api.technician.views import TechnicianPaymentListView, TechnicianReportView
+from api.technician.views import TechnicianPaymentView, TechnicianReportView
 
 from .company.views import CompanyViewSet
 
@@ -13,7 +13,7 @@ urlpatterns = [
     path("", include(router.urls)),
     path(
         "technicians/payments/",
-        TechnicianPaymentListView.as_view(),
+        TechnicianPaymentView.as_view(),
         name="technician-payments-list",
     ),
     path(
