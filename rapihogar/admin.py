@@ -27,7 +27,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
 
 @admin.register(Order)
-class PedidoAdmin(admin.ModelAdmin):
+class OrderAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "type_request",

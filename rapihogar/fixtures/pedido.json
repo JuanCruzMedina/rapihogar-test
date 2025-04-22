@@ -1,6 +1,6 @@
 [
   {
-    "model": "rapihogar.pedido",
+    "model": "rapihogar.order",
     "pk": 1,
     "fields": {
       "type_request": 1,

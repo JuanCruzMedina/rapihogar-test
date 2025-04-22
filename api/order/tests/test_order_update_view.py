@@ -43,7 +43,7 @@ class OrderUpdateViewTest(APITestCase):
 
     def test_update_order_success(self) -> None:
         """
-        Verifica que se pueda actualizar un pedido cuando type_request = PEDIDO.
+        Verifica que se pueda actualizar un pedido cuando type_request = ORDER.
         """
         url: str = reverse("order-update", args=[self.valid_order.id])
         new_data: dict = {
@@ -59,9 +59,9 @@ class OrderUpdateViewTest(APITestCase):
         self.assertEqual(updated_order.hours_worked, 8)
         self.assertEqual(updated_order.technician.id, self.technician2.id)
 
-    def test_update_order_not_pedido(self) -> None:
+    def test_order_update_invalid_type_request(self) -> None:
         """
-        Verifica que no se pueda actualizar un pedido si type_request != PEDIDO.
+        Verifica que no se pueda actualizar un pedido si type_request != ORDER.
         """
         url: str = reverse("order-update", args=[self.non_editable_order.id])
         new_data: dict = {"hours_worked": 15}

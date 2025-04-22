@@ -17,8 +17,8 @@ class TechnicianReportView(APIView):
     def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
 
         technicians: QuerySet = Technician.objects.annotate(
-            total_hours=Sum("pedido__hours_worked"),
-            total_orders=Count("pedido"),
+            total_hours=Sum("order__hours_worked"),
+            total_orders=Count("order"),
         )
 
         technicians_data: List[Dict[str, Any]] = [

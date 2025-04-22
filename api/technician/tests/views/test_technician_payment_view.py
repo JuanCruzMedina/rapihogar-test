@@ -112,10 +112,10 @@ class TechnicianPaymentListViewTest(TestCase):
         scheme = Scheme.objects.create(
             name="Esquema de prueba",
         )
-        technician.pedido_set.create(
+        technician.order_set.create(
             type_request=Order.ORDER, client=user, scheme=scheme, hours_worked=5
         )
-        technician.pedido_set.create(
+        technician.order_set.create(
             type_request=Order.ORDER, client=user, scheme=scheme, hours_worked=3
         )
 

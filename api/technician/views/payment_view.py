@@ -24,8 +24,8 @@ class TechnicianPaymentView(APIView):
         technicians: QuerySet = Technician.objects.filter(
             Q(first_name__icontains=name_filter) | Q(last_name__icontains=name_filter)
         ).annotate(
-            total_hours=Sum("pedido__hours_worked"),
-            total_orders=Count("pedido"),
+            total_hours=Sum("order__hours_worked"),
+            total_orders=Count("order"),
         )
 
         data: List[Dict[str, Any]] = [

@@ -70,12 +70,12 @@ class Order(models.Model):
     REQUEST = 0
     ORDER = 1
 
-    TIPO_PEDIDO = (
+    ORDER_TYPE_CHOICES = (
         (REQUEST, "Solicitud"),
         (ORDER, "Pedido"),
     )
     type_request = models.IntegerField(
-        choices=TIPO_PEDIDO, db_index=True, default=ORDER
+        choices=ORDER_TYPE_CHOICES, db_index=True, default=ORDER
     )
     client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
     technician = models.ForeignKey(
