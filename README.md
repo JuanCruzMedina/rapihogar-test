@@ -27,25 +27,34 @@ test_web_1     python manage.py runserver ...   Up      0.0.0.0:8000->8000/tcp,:
 ```
 
 ```bash
-docker exec test_web_1  python manage.py  makemigrations rapihogar
-docker exec test_web_1  python manage.py  migrate
+docker exec rapihogar-test_web_1  python manage.py  makemigrations rapihogar
+docker exec rapihogar-test_web_1  python manage.py  migrate
 ```
 ### Cargar datos de pruebas
 ```bash
-docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/user.json --app rapihogar.user
-docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/company.json --app rapihogar.company
-docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/scheme.json --app rapihogar.scheme
-docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/technician.json --app rapihogar.technician
-docker exec test_web_1 python manage.py loaddata rapihogar/fixtures/pedido.json --app rapihogar.pedido
+docker exec rapihogar-test_web_1 python manage.py loaddata rapihogar/fixtures/user.json --app rapihogar.user
+docker exec rapihogar-test_web_1 python manage.py loaddata rapihogar/fixtures/company.json --app rapihogar.company
+docker exec rapihogar-test_web_1 python manage.py loaddata rapihogar/fixtures/scheme.json --app rapihogar.scheme
+docker exec rapihogar-test_web_1 python manage.py loaddata rapihogar/fixtures/technician.json --app rapihogar.technician
+docker exec rapihogar-test_web_1 python manage.py loaddata rapihogar/fixtures/pedido.json --app rapihogar.pedido
 ```
 
 ```bash
-docker exec -it test_web_1 python manage.py createsuperuser
+docker exec -it rapihogar-test_web_1 python manage.py createsuperuser
 ```
+
+### Generar ordenes
+
+```bash
+docker exec rapihogar-test_web_1 python manage.py generate-orders 10 --delete
+```
+
+Agregar el `--delete` si queremos eliminar las notas previas.
+
 ### Run tests ###
 
 ```bash
-docker exec -it test_web_1 python manage.py test
+docker exec -it rapihogar-test_web_1 python manage.py test
 ```
 # Tarea a realizar #
 Rapihogar necesita cargar las horas trabajadas por los técnicos para poder realizar la liquidación. Se pide:
