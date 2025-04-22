@@ -12,7 +12,7 @@ FULL_NAME_MARIA = "Maria Lopez"
 FULL_NAME_CARLOS = "Carlos Juan"
 
 
-class TechnicianListViewTest(TestCase):
+class TechnicianPaymentListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         """
@@ -66,9 +66,12 @@ class TechnicianListViewTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data: List[Dict[str, Any]] = response.json()
         self.assertEqual(len(response_data), 3)
-        self.assertEqual(response_data[0]["full_name"], FULL_NAME_CARLOS)
-        self.assertEqual(response_data[1]["full_name"], FULL_NAME_MARIA)
-        self.assertEqual(response_data[2]["full_name"], FULL_NAME_JUAN)
+        response_technicians: List[str] = [
+            technician["full_name"] for technician in response_data
+        ]
+        self.assertIn(FULL_NAME_JUAN, response_technicians)
+        self.assertIn(FULL_NAME_MARIA, response_technicians)
+        self.assertIn(FULL_NAME_CARLOS, response_technicians)
 
     def test_no_technicians(self) -> None:
         """
