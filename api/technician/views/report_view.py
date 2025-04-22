@@ -24,7 +24,7 @@ class TechnicianReportView(APIView):
         technicians_data: List[Dict[str, Any]] = [
             {
                 "technician": technician,
-                "full_name": f"{technician.first_name} {technician.last_name}",
+                "full_name": technician.full_name,
                 "total_hours": technician.total_hours or 0,
                 "total_payment": PaymentService.calculate_payment(
                     technician.total_hours or 0
