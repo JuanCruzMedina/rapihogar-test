@@ -75,6 +75,7 @@ class TechnicianReportViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         data: Dict[str, Any] = response.json()
+
         self.assertAlmostEqual(data["average_payment"], 1503.33, places=2)
 
     def test_below_average_technicians(self) -> None:
