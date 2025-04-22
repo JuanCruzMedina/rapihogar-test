@@ -2,7 +2,8 @@ from django.urls import include, path
 from rest_framework import routers
 
 from api.order.views import OrderUpdateView
-from api.technician.views import TechnicianPaymentView, TechnicianReportView
+from api.technician.views.payment_view import TechnicianPaymentView
+from api.technician.views.report_view import TechnicianReportView
 
 from .company.views import CompanyViewSet
 
