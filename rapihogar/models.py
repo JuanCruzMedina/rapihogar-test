@@ -115,5 +115,5 @@ class Technician(models.Model):
 
     class Meta:
         app_label = "rapihogar"
-        verbose_name = _("Tecnicos")
+        verbose_name = _("Tecnico")
         verbose_name_plural = _("Tecnicos")
