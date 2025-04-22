@@ -82,7 +82,7 @@ class Pedido(models.Model):
         "Technician", verbose_name="tecnico", on_delete=models.CASCADE, null=False
     )
     scheme = models.ForeignKey(Scheme, null=True, on_delete=models.CASCADE)
-    hours_worked = models.IntegerField(default=0)
+    hours_worked = models.PositiveIntegerField(default=0)
 
     class Meta:
         app_label = "rapihogar"
